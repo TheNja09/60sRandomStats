@@ -1,4 +1,21 @@
 rngWait = 3600
+rngBaseSpeed = 8
+rngValor = 12
+rngWisdom = 12
+rngMaster = 10
+rngFinal = 16
+rngAnti = 16
+rngLion = 18
+rngMermaid = 7
+rngCarpet = 20
+rngDice = 8
+rngCard = 8
+rngLimit = 8
+rngAttack = 10
+rngMagic = 10
+rngDefense = 10
+rngHP = 20
+rngMP = 100
 function _OnFrame()
 	World = ReadByte(Now + 0x00)
 	Room = ReadByte(Now + 0x01)
@@ -35,53 +52,70 @@ function Events(M,B,E) --Check for Map, Btl, and Evt
 end
 
 function Cheats()
-if ReadByte(Slot1+0x0) > ReadByte(Slot1+0x4) then
-	WriteByte(Slot1+0x0, ReadByte(Slot1+0x4))
-end
-if ReadByte(Slot1+0x180) > ReadByte(Slot1+0x184) then
-	WriteByte(Slot1+0x180, ReadByte(Slot1+0x184))
-end
-math.randomseed(os.time())
 rngWait = rngWait - 1
-if rngWait == 180 then
-	ConsolePrint("Next random set of stats in 3 seconds!")
-end
-if rngWait == 120 then
-	ConsolePrint("Next random set of stats in 2 seconds!")
-end
-if rngWait == 60 then
-	ConsolePrint("Next random set of stats in 1 seconds!")
-end
-if rngWait <= 0 then
-	WriteFloat(Sys3+0x17CE4, math.random(1,24)) -- Base Speed: DS = 8
-	WriteFloat(Sys3+0x17D18, math.random(1,36)) -- Valor Form: DS = 12
-	WriteFloat(Sys3+0x17D4C, math.random(1,36)) -- Wisdom Form: DS = 12
-	WriteFloat(Sys3+0x17D80, math.random(1,30)) -- Master Form: DS = 10
-	WriteFloat(Sys3+0x17DB4, math.random(1,48)) -- Final Form: DS = 16
-	WriteFloat(Sys3+0x17E1C, math.random(1,54)) -- Lion Sora: DS = 18
-	WriteFloat(Sys3+0x17DE8, math.random(1,48)) -- Anti Form: DS = 16
-	WriteFloat(Sys3+0x17E50, math.random(1,21)) -- Mermaid Sora: DS = 7
-	WriteFloat(Sys3+0x18190, math.random(1,60)) -- Carpet Sora: DS = 20
-	WriteFloat(Sys3+0x181F8, math.random(1,24)) -- Dice Sora: DS = 8
-	WriteFloat(Sys3+0x1822C, math.random(1,24)) -- Card Sora: DS = 8
-	WriteFloat(Sys3+0x18364, math.random(1,24)) -- Limit Form: DS = 8
-	WriteByte(Slot1+0x4, math.random(1,200))
-	WriteByte(Slot1+0x184, math.random(1,200))
-	WriteByte(0x24BC8D2, math.random(1,120))
-	WriteByte(0x24BC8D4, math.random(1,120))
-	WriteByte(0x24BC8D6, math.random(1,120))
-	rngWait = 3600
-	ConsolePrint("Current Attack:")
+	if ReadByte(Slot1+0x0) > ReadByte(Slot1+0x4) then
+	WriteByte(Slot1+0x0, ReadByte(Slot1+0x4))
+	end
+	if ReadByte(Slot1+0x180) > ReadByte(Slot1+0x184) then
+	WriteByte(Slot1+0x180, ReadByte(Slot1+0x184))
+	end
+	if rngWait == 0 then
+	rngBaseSpeed = math.random(1,24)
+	rngValor = math.random(1,36)
+	rngWisdom = math.random(1,36)
+	rngMaster = math.random(1,30)
+	rngFinal = math.random(1,48)
+	rngAnti = math.random(1,48)
+	rngLion = math.random(1,54)
+	rngMermaid = math.random(1,21)
+	rngCarpet = math.random(1,60)
+	rngDice = math.random(1,24)
+	rngCard = math.random(1,24)
+	rngLimit = math.random(1,24)
+	rngAttack = math.random(1,80)
+	rngMagic = math.random(1,80)
+	rngDefense = math.random(1,80)
+	rngHP = math.random(1,120)
+	rngMP = math.random(1,140)
+	end
+WriteFloat(Sys3+0x17CE4, rngBaseSpeed) -- Base Speed: DS = 8
+WriteFloat(Sys3+0x17D18, rngValor) -- Valor Form: DS = 12
+WriteFloat(Sys3+0x17D4C, rngWisdom) -- Wisdom Form: DS = 12
+WriteFloat(Sys3+0x17D80, rngMaster) -- Master Form: DS = 10
+WriteFloat(Sys3+0x17DB4, rngFinal) -- Final Form: DS = 16
+WriteFloat(Sys3+0x17E1C, rngLion) -- Lion Sora: DS = 18
+WriteFloat(Sys3+0x17DE8, rngAnti) -- Anti Form: DS = 16
+WriteFloat(Sys3+0x17E50, rngMermaid) -- Mermaid Sora: DS = 7
+WriteFloat(Sys3+0x18190, rngCarpet) -- Carpet Sora: DS = 20
+WriteFloat(Sys3+0x181F8, rngDice) -- Dice Sora: DS = 8
+WriteFloat(Sys3+0x1822C, rngCard) -- Card Sora: DS = 8
+WriteFloat(Sys3+0x18364, rngLimit) -- Limit Form: DS = 8
+WriteByte(Slot1+0x4, rngHP)
+WriteByte(Slot1+0x184, rngMP)
+WriteByte(0x24BC8D2, rngAttack)
+WriteByte(0x24BC8D4, rngMagic)
+WriteByte(0x24BC8D6, rngDefense)
+	if rngWait == 0 then
+	ConsolePrint("New Attack:")
 	ConsolePrint(ReadByte(0x24BC8D2))
-	ConsolePrint("Current Magic:")
+	ConsolePrint("New Magic:")
 	ConsolePrint(ReadByte(0x24BC8D4))
-	ConsolePrint("Current Defense:")
+	ConsolePrint("New Defense:")
 	ConsolePrint(ReadByte(0x24BC8D6))
-	ConsolePrint("Max HP:")
+	ConsolePrint("New HP:")
 	ConsolePrint(ReadByte(Slot1+0x4))
-	ConsolePrint("Max MP:")
+	ConsolePrint("New MP:")
 	ConsolePrint(ReadByte(Slot1+0x184))
-	ConsolePrint("Base Running Speed:")
+	ConsolePrint("New Base Speed:")
 	ConsolePrint(ReadFloat(Sys3+0x17CE4))
-end
+	end
+	if rngWait == 180 then
+	ConsolePrint("Next random set of stats in 3 seconds!")
+	elseif rngWait == 120 then
+	ConsolePrint("Next random set of stats in 2 seconds!")
+	elseif rngWait == 60 then
+	ConsolePrint("Next random set of stats in 1 seconds!")
+	elseif rngWait == 0 then
+	rngWait = 3600
+	end
 end
