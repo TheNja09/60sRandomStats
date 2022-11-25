@@ -1,0 +1,8 @@
+title: 60s Random Stats
+description: This mod will randomize your gameplay stats every 60 seconds! Check your console to see your new stats!
+assets:
+#Lua Scripts
+- name: scripts/randomstats.lua
+  method: copy
+  source:
+  - name: randomstats.lua
