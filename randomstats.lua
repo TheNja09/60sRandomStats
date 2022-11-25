@@ -81,5 +81,7 @@ if rngWait <= 0 then
 	ConsolePrint(ReadByte(Slot1+0x4))
 	ConsolePrint("Max MP:")
 	ConsolePrint(ReadByte(Slot1+0x184))
+	ConsolePrint("Base Running Speed:")
+	ConsolePrint(ReadFloat(Sys3+0x17CE4))
 end
 end
