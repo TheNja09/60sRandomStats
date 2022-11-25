@@ -67,9 +67,9 @@ if rngWait <= 0 then
 	WriteFloat(Sys3+0x18364, math.random(1,24)) -- Limit Form: DS = 8
 	WriteByte(Slot1+0x4, math.random(1,200))
 	WriteByte(Slot1+0x184, math.random(1,200))
-	WriteByte(0x2535C5E, math.random(1,200))
-	WriteByte(0x2535C5F, math.random(1,200))
-	WriteByte(0x2535C60, math.random(1,200))
+	WriteByte(0x2535C5E, math.random(1,120))
+	WriteByte(0x2535C5F, math.random(1,120))
+	WriteByte(0x2535C60, math.random(1,120))
 	rngWait = 3600
 	ConsolePrint("Current Attack:")
 	ConsolePrint(ReadByte(0x2535C5E))
