@@ -242,7 +242,7 @@ end
 	elseif rngWait == 120 then
 	ConsolePrint("Next random set of stats in 2 seconds!")
 	elseif rngWait == 60 then
-	ConsolePrint("Next random set of stats in 1 seconds!")
+	ConsolePrint("Next random set of stats in 1 second!")
 	elseif rngWait == 0 then
 	rngWait = 3600
 	end
