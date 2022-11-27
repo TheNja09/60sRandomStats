@@ -102,8 +102,8 @@ function Cheats()
         rngHP = math.random(1,120) -- Maximum HP
         rngMP = math.random(1,140) -- Maximum MP
         rngGlideSpeed = math.random(1,100) -- Glide Speed (Affects all levels with the same value)
-        rngScale = math.random(10,300)/100 -- Sora's Size (Divided by 100 in order to get decimal values)
-        rngAnimation = math.random(3,50)/10 -- Sora's Animation Speed
+        rngScale = math.random(30,200)/100 -- Sora's Size (Divided by 100 in order to get decimal values)
+        rngAnimation = math.random(8,30)/10 -- Sora's Animation Speed
         rngHighJump = math.random(1,2000) -- Jump Height (Affects base and all High Jump levels)
         rngAerial = math.random(1,100) -- Aerial Recovery Movement Speed
         rngValorCost = math.random(0,9) -- Valor Form Cost
@@ -112,7 +112,7 @@ function Cheats()
         rngMasterCost = math.random(0,9) -- Master Form Cost
         rngFinalCost = math.random(0,9) -- Final Form Cost
         rngSummonCost = math.random(0,9) -- Summon Costs (Affects all summons)
-        rngMagicCost = math.random(0,140) -- Magic Cost (Affects every magic spell and limit)
+        rngMagicCost = math.random(0,rngMP+25) -- Magic Cost (Affects every magic spell and limit)
         rngQuickRun = math.random(1,125)  -- Quick Run Speed
         rngADodgeHeight = math.random(0,2000)  -- Aerial Dodge Height (Affects all levels)
         rngADodgeSpeed = math.random(1,350) -- Aerial Dodge Speed [Horizontal Speed] (Affects all levels)
