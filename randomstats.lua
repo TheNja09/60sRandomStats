@@ -1,4 +1,4 @@
-rngWait = 3600 --This is the time between random stat generations, counted in frames (3600 equals 1 minute).
+rngWait = 181 --This is the FIRST time before the random stat generation, counted in frames (3600 equals 1 minute).
 --You should also edit the value at the very bottom of this page if you wish to have different RNG timings!
 --You can ignore these values below
 rngBaseSpeed = 8
@@ -199,7 +199,7 @@ function Cheats()
     WriteFloat(0x250D432, rngQuickRun) -- QRAX2 Speed
     WriteFloat(0x250D316, rngADodgeHeight) -- AD1 Height
     WriteFloat(0x250D31A, rngADodgeSpeed) -- AD1 Speed
-    WriteFloat(0x250D35A, rngADodgeHeight) -- AD2 Height 
+    WriteFloat(0x250D35A, rngADodgeHeight) -- AD2 Height
     WriteFloat(0x250D35E, rngADodgeSpeed) -- AD2 Speed
     WriteFloat(0x250D39E, rngADodgeHeight) -- AD3 Height
     WriteFloat(0x250D3A3, rngADodgeSpeed) -- AD3 Speed
@@ -230,44 +230,65 @@ function Cheats()
     -- These are what the file will print to the console [F2] with your new stats. If you would like to add your own, just follow the format!
     -- You may also safely remove any prints by deleting them or commenting them out with double dashes.
     if rngWait == 0 then
-        ConsolePrint("New Attack:")
-        ConsolePrint(rngAttack)
-        ConsolePrint("New Magic:")
-        ConsolePrint(rngMagic)
-        ConsolePrint("New Defense:")
-        ConsolePrint(rngDefense)
-        ConsolePrint("New HP:")
-        ConsolePrint(rngHP)
-        ConsolePrint("New MP:")
-        ConsolePrint(rngMP)
-        ConsolePrint("New Size:")
-        ConsolePrint(rngScale)
-        ConsolePrint("New Animation Speed:")
-        ConsolePrint(rngAnimation)
-        ConsolePrint("Valor Now Costs:")
-        ConsolePrint(rngValorCost)
-        ConsolePrint("Wisdom Now Costs:")
-        ConsolePrint(rngWisdomCost)
-        ConsolePrint("Limit Now Costs:")
-        ConsolePrint(rngLimitCost)
-        ConsolePrint("Master Now Costs:")
-        ConsolePrint(rngMasterCost)
-        ConsolePrint("Final Now Costs:")
-        ConsolePrint(rngFinalCost)
-        ConsolePrint("Summon Now Costs:")
-        ConsolePrint(rngSummonCost)
-        ConsolePrint("All Spells and Limits Now Cost:")
-        ConsolePrint(rngMagicCost)
+        print("New Attack:")
+        print(rngAttack)
+        print("New Magic:")
+        print(rngMagic)
+        print("New Defense:")
+        print(rngDefense)
+        print("New HP:")
+        print(rngHP)
+        print("New MP:")
+        print(rngMP)
+        print("New Size:")
+        print(rngScale)
+        print("New Animation Speed:")
+        print(rngAnimation)
+        print("Valor Now Costs:")
+        if rngValorCost == 0 then
+            print("FREE!!!")
+        else print(rngValorCost)
+        end
+        print("Wisdom Now Costs:")
+        if rngWisdomCost == 0 then
+            print("FREE!!!")
+        else print(rngWisdomCost)
+        end
+        print("Limit Now Costs:")
+        if rngLimitCost == 0 then
+            print("FREE!!!")
+        else print(rngLimitCost)
+        end
+        print("Master Now Costs:")
+        if rngMasterCost == 0 then
+            print("FREE!!!")
+        else print(rngMasterCost)
+        end
+        print("Final Now Costs:")
+        if rngFinalCost == 0 then
+            print("FREE!!!")
+        else print(rngFinalCost)
+        end
+        print("Summon Now Costs:")
+        if rngSummonCost == 0 then
+            print("FREE!!!")
+        else print(rngSummonCost)
+        end
+        print("All Spells and Limits Now Cost:")
+        if rngMagicCost == 0 then
+            print("FREE!!!")
+        else print(rngMagicCost)
+        end
     end
     -- Optional warnings to notify when the next RNG event will happen.
     -- Remember that the rngWait function counts down by 1 every frame!
     if rngWait == 180 then -- 3 Seconds left
-        ConsolePrint("Next random set of stats in 3 seconds!")
+        print("Next random set of stats in 3 seconds!")
     elseif rngWait == 120 then -- 2 Seconds left
-        ConsolePrint("Next random set of stats in 2 seconds!")
+        print("Next random set of stats in 2 seconds!")
     elseif rngWait == 60 then -- 1 Second left
-        ConsolePrint("Next random set of stats in 1 second!")
+        print("Next random set of stats in 1 second!")
     elseif rngWait == 0 then
-        rngWait = 3600 --You should edit this value if you wish to have different RNG timings! The one at the top is just for the first call.
+        rngWait = 181 --You should edit this value if you wish to have different RNG timings! The one at the top is just for the first call.
     end
 end
