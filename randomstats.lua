@@ -37,6 +37,7 @@ rngADodgeSpeed = 18
 rngDriveSpd = 1
 rngAudio = 1
 rngDodgeRoll = 10
+rngDraw = 125
 function _OnFrame()
     World = ReadByte(Now + 0x00)
     Room = ReadByte(Now + 0x01)
@@ -129,6 +130,7 @@ function Cheats()
 		--rngCameraFOV = math.random(100,300)/100 -- Camera Field of View (DO NOT SET BELOW 1) [Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!]
 		rngAudio = math.random(0,20)/10 -- Game Audio Speed/Pitch
 		rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
+		rngDraw = math.random(0,20)*125 -- Draw Range
     end
     WriteFloat(Sys3+0x17CE4, rngBaseSpeed) -- Base Speed: DS = 8
     WriteFloat(Sys3+0x17D18, rngValor) -- Valor Form: DS = 12
@@ -228,6 +230,7 @@ function Cheats()
 	WriteFloat(0x250D3DA, rngDodgeRoll) -- Dodge Roll 3
 	WriteFloat(0x250D41E, rngDodgeRoll) -- Dodge Roll MAX
 	WriteFloat(0x250D462, rngDodgeRoll) -- Dodge Roll AX2
+	WriteFloat(0x24BC952, rngDraw)
     WriteFloat(soraJumpStrengthPointer, rngHighJump, true)
     if ReadShort(Now+0) == 0x1C12 and ReadShort(Now+8) == 0x44 then
         WriteFloat(soraScalePointer, 1, true)
