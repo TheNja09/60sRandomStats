@@ -34,8 +34,8 @@ rngQuickRun = 30
 rngADodgeHeight = 145
 rngADodgeSpeed = 18
 --rngCameraFOV = 1 -- Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!
---rngDriveSpd = 1
---rngAudio = 1
+--rngDriveSpd = 1 -- Unstable! May cause crashes!
+--rngAudio = 1 -- Unstable! May cause crashes!
 rngDodgeRoll = 10
 rngDraw = 125
 function _OnFrame()
@@ -126,9 +126,9 @@ function Cheats()
         rngQuickRun = math.random(1,125)  -- Quick Run Speed
         rngADodgeHeight = math.random(0,2000)  -- Aerial Dodge Height (Affects all levels)
         rngADodgeSpeed = math.random(1,350) -- Aerial Dodge Speed [Horizontal Speed] (Affects all levels)
-		--rngDriveSpd = math.random(-2,3) -- Drive Gauge Drain Speed
-		--rngCameraFOV = math.random(100,300)/100 -- Camera Field of View (DO NOT SET BELOW 1) [Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!]
-		--rngAudio = math.random(0,20)/10 -- Game Audio Speed/Pitch
+		--rngDriveSpd = math.random(-2,3) -- Drive Gauge Drain Speed [Unstable! May cause crashes!]
+		--rngCameraFOV = math.random(100,300)/100 -- Camera Field of View (DO NOT SET BELOW 1)  [Unstable! May cause crashes!]
+		--rngAudio = math.random(0,20)/10 -- Game Audio Speed/Pitch [Unstable! May cause crashes!]
 		rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
 		rngDraw = math.random(0,20)*125 -- Draw Range
     end
@@ -221,10 +221,10 @@ function Cheats()
     WriteFloat(0x250D3E6, rngADodgeSpeed) -- AD4 Speed
     WriteFloat(0x250D426, rngADodgeHeight) -- ADAX2 Height
     WriteFloat(0x250D42A, rngADodgeSpeed) -- ADAX2 Speed
-	--WriteFloat(DriveSpd, rngDriveSpd) -- Drive Gauge Speed
-	--WriteFloat(SumSpd, rngDriveSpd) -- Summon Gauge Speed
+	--WriteFloat(DriveSpd, rngDriveSpd) -- Drive Gauge Speed [Unstable! May cause crashes!]
+	--WriteFloat(SumSpd, rngDriveSpd) -- Summon Gauge Speed [Unstable! May cause crashes!]
 	--WriteFloat(CameraFOV, rngCameraFOV) -- -- Optional setting for the camera field of view. Leave commented if you want to keep this disabled!
-	--WriteFloat(GamAud, rngAudio) -- Game Audio Speed
+	--WriteFloat(GamAud, rngAudio) -- Game Audio Speed [Unstable! May cause crashes!]
 	WriteFloat(0x250D352, rngDodgeRoll) -- Dodge Roll 1
 	WriteFloat(0x250D396, rngDodgeRoll) -- Dodge Roll 2
 	WriteFloat(0x250D3DA, rngDodgeRoll) -- Dodge Roll 3
