@@ -1,4 +1,5 @@
-rngWait = 3600 --This is the time between random stat generations, counted in frames (3600 equals 1 minute)
+rngWait = 3600 --This is the time between random stat generations, counted in frames (3600 equals 1 minute).
+--You should also edit the value at the very bottom of this page if you wish to have different RNG timings!
 --You can ignore these values below
 rngBaseSpeed = 8
 rngValor = 12
@@ -267,6 +268,6 @@ function Cheats()
     elseif rngWait == 60 then -- 1 Second left
         ConsolePrint("Next random set of stats in 1 second!")
     elseif rngWait == 0 then
-        rngWait = 3600
+        rngWait = 3600 --You should edit this value if you wish to have different RNG timings! The one at the top is just for the first call.
     end
 end
