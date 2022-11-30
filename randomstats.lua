@@ -33,6 +33,10 @@ rngMagicCost = 15
 rngQuickRun = 30
 rngADodgeHeight = 145
 rngADodgeSpeed = 18
+--rngCameraFOV = 1 -- Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!
+rngDriveSpd = 1
+rngAudio = 1
+rngDodgeRoll = 10
 function _OnFrame()
     World = ReadByte(Now + 0x00)
     Room = ReadByte(Now + 0x01)
@@ -59,6 +63,10 @@ function _OnInit()
         Save = 0x09A7070 - 0x56450E
         Obj0 = 0x2A22B90 - 0x56450E
         Sys3 = 0x2A59DB0 - 0x56450E
+		CameraFOV = 0x47435D - 0x56454E
+		DriveSpd = 0x3FEF56 - 0x56454E
+		SumSpd = 0x3FEF88 - 0x56454E
+		GamAud = 0xB0928 - 0x56454E
         Btl0 = 0x2A74840 - 0x56450E
         Slot1 = 0x2A20C58 - 0x56450E
     end
@@ -117,6 +125,10 @@ function Cheats()
         rngQuickRun = math.random(1,125)  -- Quick Run Speed
         rngADodgeHeight = math.random(0,2000)  -- Aerial Dodge Height (Affects all levels)
         rngADodgeSpeed = math.random(1,350) -- Aerial Dodge Speed [Horizontal Speed] (Affects all levels)
+		rngDriveSpd = math.random(-3,3) -- Drive Gauge Drain Speed
+		--rngCameraFOV = math.random(100,300)/100 -- Camera Field of View (DO NOT SET BELOW 1) [Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!]
+		rngAudio = math.random(0,20)/10 -- Game Audio Speed/Pitch
+		rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
     end
     WriteFloat(Sys3+0x17CE4, rngBaseSpeed) -- Base Speed: DS = 8
     WriteFloat(Sys3+0x17D18, rngValor) -- Valor Form: DS = 12
@@ -140,11 +152,11 @@ function Cheats()
     WriteFloat(0x250D3BA, rngGlideSpeed) -- Glide 3 Speed (Default: 24)
     WriteFloat(0x250D3FE, rngGlideSpeed) -- Glide MAX Speed (Default: 32)
     WriteFloat(0x250D442, rngGlideSpeed) -- Glide AX2 Speed (Default: 64)
-    WriteFloat(0x250D312, rngHighJump + 200) -- Sora Base Jump Height
-    WriteFloat(0x250D356, rngHighJump + 400) -- Sora High Jump 2
-    WriteFloat(0x250D39A, rngHighJump + 600) -- Sora High Jump 3
-    WriteFloat(0x250D3DE, rngHighJump + 800) -- Sora High Jump MAX
-    WriteFloat(0x250D422, rngHighJump + 1000) -- Sora High Jump AX2
+    WriteFloat(0x250D312, rngHighJump) -- Sora Base Jump Height
+    WriteFloat(0x250D356, rngHighJump) -- Sora High Jump 2
+    WriteFloat(0x250D39A, rngHighJump) -- Sora High Jump 3
+    WriteFloat(0x250D3DE, rngHighJump) -- Sora High Jump MAX
+    WriteFloat(0x250D422, rngHighJump) -- Sora High Jump AX2
     WriteFloat(0x250CEC6, rngAerial) -- Aerial Recovery Movement Speed
     WriteByte(Sys3+0x03E0,rngValorCost) -- Valor
     WriteByte(Sys3+0x0410,rngWisdomCost) -- Wisdom
@@ -207,6 +219,15 @@ function Cheats()
     WriteFloat(0x250D3E6, rngADodgeSpeed) -- AD4 Speed
     WriteFloat(0x250D426, rngADodgeHeight) -- ADAX2 Height
     WriteFloat(0x250D42A, rngADodgeSpeed) -- ADAX2 Speed
+	WriteFloat(DriveSpd, rngDriveSpd) -- Drive Gauge Speed
+	WriteFloat(SumSpd, rngDriveSpd) -- Summon Gauge Speed
+	--WriteFloat(CameraFOV, rngCameraFOV) -- -- Optional setting for the camera field of view. Leave commented if you want to keep this disabled!
+	WriteFloat(GamAud, rngAudio) -- Game Audio Speed
+	WriteFloat(0x250D352, rngDodgeRoll) -- Dodge Roll 1
+	WriteFloat(0x250D396, rngDodgeRoll) -- Dodge Roll 2
+	WriteFloat(0x250D3DA, rngDodgeRoll) -- Dodge Roll 3
+	WriteFloat(0x250D41E, rngDodgeRoll) -- Dodge Roll MAX
+	WriteFloat(0x250D462, rngDodgeRoll) -- Dodge Roll AX2
     WriteFloat(soraJumpStrengthPointer, rngHighJump, true)
     if ReadShort(Now+0) == 0x1C12 and ReadShort(Now+8) == 0x44 then
         WriteFloat(soraScalePointer, 1, true)
@@ -240,10 +261,10 @@ function Cheats()
         print(rngHP)
         print("New MP:")
         print(rngMP)
-        print("New Size:")
-        print(rngScale)
-        print("New Animation Speed:")
-        print(rngAnimation)
+        print("New Drive and Summon Gauge Speed:")
+        print(rngDriveSpd)
+        print("New Dodge Roll iFrames:")
+        print(rngDodgeRoll)
         print("Valor Now Costs:")
         if rngValorCost == 0 then
             print("FREE!!!")
