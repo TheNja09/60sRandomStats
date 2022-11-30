@@ -140,11 +140,11 @@ function Cheats()
     WriteFloat(0x250D3BA, rngGlideSpeed) -- Glide 3 Speed (Default: 24)
     WriteFloat(0x250D3FE, rngGlideSpeed) -- Glide MAX Speed (Default: 32)
     WriteFloat(0x250D442, rngGlideSpeed) -- Glide AX2 Speed (Default: 64)
-    WriteFloat(0x250D312, rngHighJump) -- Sora Base Jump Height
-    WriteFloat(0x250D356, rngHighJump) -- Sora High Jump 2
-    WriteFloat(0x250D39A, rngHighJump) -- Sora High Jump 3
-    WriteFloat(0x250D3DE, rngHighJump) -- Sora High Jump MAX
-    WriteFloat(0x250D422, rngHighJump) -- Sora High Jump AX2
+    WriteFloat(0x250D312, rngHighJump + 200) -- Sora Base Jump Height
+    WriteFloat(0x250D356, rngHighJump + 400) -- Sora High Jump 2
+    WriteFloat(0x250D39A, rngHighJump + 600) -- Sora High Jump 3
+    WriteFloat(0x250D3DE, rngHighJump + 800) -- Sora High Jump MAX
+    WriteFloat(0x250D422, rngHighJump + 1000) -- Sora High Jump AX2
     WriteFloat(0x250CEC6, rngAerial) -- Aerial Recovery Movement Speed
     WriteByte(Sys3+0x03E0,rngValorCost) -- Valor
     WriteByte(Sys3+0x0410,rngWisdomCost) -- Wisdom
