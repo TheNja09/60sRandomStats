@@ -126,7 +126,7 @@ function Cheats()
         rngQuickRun = math.random(1,125)  -- Quick Run Speed
         rngADodgeHeight = math.random(0,2000)  -- Aerial Dodge Height (Affects all levels)
         rngADodgeSpeed = math.random(1,350) -- Aerial Dodge Speed [Horizontal Speed] (Affects all levels)
-		rngDriveSpd = math.random(-3,3) -- Drive Gauge Drain Speed
+		rngDriveSpd = math.random(-2,3) -- Drive Gauge Drain Speed
 		--rngCameraFOV = math.random(100,300)/100 -- Camera Field of View (DO NOT SET BELOW 1) [Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!]
 		rngAudio = math.random(0,20)/10 -- Game Audio Speed/Pitch
 		rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
