@@ -34,8 +34,8 @@ rngQuickRun = 30
 rngADodgeHeight = 145
 rngADodgeSpeed = 18
 --rngCameraFOV = 1 -- Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!
-rngDriveSpd = 1
-rngAudio = 1
+--rngDriveSpd = 1
+--rngAudio = 1
 rngDodgeRoll = 10
 rngDraw = 125
 function _OnFrame()
@@ -64,10 +64,10 @@ function _OnInit()
         Save = 0x09A7070 - 0x56450E
         Obj0 = 0x2A22B90 - 0x56450E
         Sys3 = 0x2A59DB0 - 0x56450E
-		CameraFOV = 0x47435D - 0x56454E
-		DriveSpd = 0x3FEF56 - 0x56454E
-		SumSpd = 0x3FEF88 - 0x56454E
-		GamAud = 0xB0928 - 0x56454E
+		--CameraFOV = 0x47435D - 0x56454E
+		--DriveSpd = 0x3FEF56 - 0x56454E
+		--SumSpd = 0x3FEF88 - 0x56454E
+		--GamAud = 0xB0928 - 0x56454E
         Btl0 = 0x2A74840 - 0x56450E
         Slot1 = 0x2A20C58 - 0x56450E
     end
@@ -126,9 +126,9 @@ function Cheats()
         rngQuickRun = math.random(1,125)  -- Quick Run Speed
         rngADodgeHeight = math.random(0,2000)  -- Aerial Dodge Height (Affects all levels)
         rngADodgeSpeed = math.random(1,350) -- Aerial Dodge Speed [Horizontal Speed] (Affects all levels)
-		rngDriveSpd = math.random(-2,3) -- Drive Gauge Drain Speed
+		--rngDriveSpd = math.random(-2,3) -- Drive Gauge Drain Speed
 		--rngCameraFOV = math.random(100,300)/100 -- Camera Field of View (DO NOT SET BELOW 1) [Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!]
-		rngAudio = math.random(0,20)/10 -- Game Audio Speed/Pitch
+		--rngAudio = math.random(0,20)/10 -- Game Audio Speed/Pitch
 		rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
 		rngDraw = math.random(0,20)*125 -- Draw Range
     end
@@ -221,10 +221,10 @@ function Cheats()
     WriteFloat(0x250D3E6, rngADodgeSpeed) -- AD4 Speed
     WriteFloat(0x250D426, rngADodgeHeight) -- ADAX2 Height
     WriteFloat(0x250D42A, rngADodgeSpeed) -- ADAX2 Speed
-	WriteFloat(DriveSpd, rngDriveSpd) -- Drive Gauge Speed
-	WriteFloat(SumSpd, rngDriveSpd) -- Summon Gauge Speed
+	--WriteFloat(DriveSpd, rngDriveSpd) -- Drive Gauge Speed
+	--WriteFloat(SumSpd, rngDriveSpd) -- Summon Gauge Speed
 	--WriteFloat(CameraFOV, rngCameraFOV) -- -- Optional setting for the camera field of view. Leave commented if you want to keep this disabled!
-	WriteFloat(GamAud, rngAudio) -- Game Audio Speed
+	--WriteFloat(GamAud, rngAudio) -- Game Audio Speed
 	WriteFloat(0x250D352, rngDodgeRoll) -- Dodge Roll 1
 	WriteFloat(0x250D396, rngDodgeRoll) -- Dodge Roll 2
 	WriteFloat(0x250D3DA, rngDodgeRoll) -- Dodge Roll 3
@@ -264,8 +264,8 @@ function Cheats()
         print(rngHP)
         print("New MP:")
         print(rngMP)
-        print("New Drive and Summon Gauge Speed:")
-        print(rngDriveSpd)
+        print("New Animation Speed:")
+        print(rngAnimation)
         print("New Dodge Roll iFrames:")
         print(rngDodgeRoll)
         print("Valor Now Costs:")
