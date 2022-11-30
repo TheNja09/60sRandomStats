@@ -1,4 +1,4 @@
-rngWait = 181 --This is the FIRST time before the random stat generation, counted in frames (3600 equals 1 minute).
+rngWait = 3600 --This is the FIRST time before the random stat generation, counted in frames (3600 equals 1 minute).
 --You should also edit the value at the very bottom of this page if you wish to have different RNG timings!
 --You can ignore these values below
 rngBaseSpeed = 8
@@ -289,6 +289,6 @@ function Cheats()
     elseif rngWait == 60 then -- 1 Second left
         print("Next random set of stats in 1 second!")
     elseif rngWait == 0 then
-        rngWait = 181 --You should edit this value if you wish to have different RNG timings! The one at the top is just for the first call.
+        rngWait = 3600 --You should edit this value if you wish to have different RNG timings! The one at the top is just for the first call.
     end
 end
