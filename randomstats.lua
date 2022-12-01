@@ -128,7 +128,7 @@ local soraScalePointer=ReadLong(0x55629A)+0x3C
         rngADodgeSpeed = math.random(1,350) -- Aerial Dodge Speed [Horizontal Speed] (Affects all levels)
 	rngDriveSpd = math.random(-2,3) -- Experimental! Please comment out if you experience crashes. [Changes the drive/summon drain speed, requires a transition]
 	rngCameraFOV = math.random(100,300)/100 -- Experimental! Please comment out if you experience crashes. [Changes the camera's field of view. Do not go below 1!]
-	rngAudio = math.random(0,20)/10 -- Experimental! Please comment out if you experience crashes. [Changes the speed/pitch of the game's audio]
+	rngAudio = math.random(10,300)/100 -- Experimental! Please comment out if you experience crashes. [Changes the speed/pitch of the game's audio]
 	rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
 	rngDraw = math.random(0,20)*125 -- Draw Range
     end
