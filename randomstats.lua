@@ -33,9 +33,9 @@ rngMagicCost = 15
 rngQuickRun = 30
 rngADodgeHeight = 145
 rngADodgeSpeed = 18
---rngCameraFOV = 1 -- Optional setting to randomize the camera field of view. Leave commented if you want to keep this disabled!
---rngDriveSpd = 1 -- Unstable! May cause crashes!
---rngAudio = 1 -- Unstable! May cause crashes!
+rngCameraFOV = 1 -- Experimental! Please comment out if you experience crashes.
+rngDriveSpd = 1 -- Experimental! Please comment out if you experience crashes.
+rngAudio = 1 -- Experimental! Please comment out if you experience crashes.
 rngDodgeRoll = 10
 rngDraw = 125
 function _OnFrame()
@@ -64,10 +64,10 @@ function _OnInit()
         Save = 0x09A7070 - 0x56450E
         Obj0 = 0x2A22B90 - 0x56450E
         Sys3 = 0x2A59DB0 - 0x56450E
-		--CameraFOV = 0x47435D - 0x56454E
-		--DriveSpd = 0x3FEF56 - 0x56454E
-		--SumSpd = 0x3FEF88 - 0x56454E
-		--GamAud = 0xB0928 - 0x56454E
+	--CameraFOV = 0x47435D - 0x56454E
+	--DriveSpd = 0x3FEF56 - 0x56454E
+	--SumSpd = 0x3FEF88 - 0x56454E
+	--GamAud = 0xB0928 - 0x56454E
         Btl0 = 0x2A74840 - 0x56450E
         Slot1 = 0x2A20C58 - 0x56450E
     end
@@ -78,9 +78,9 @@ function Events(M,B,E) --Check for Map, Btl, and Evt
 end
 
 function Cheats()
-    local soraJumpStrengthPointer=ReadLong(0x1B2512)+0x130
-    local animpointer=ReadLong(0x1B2512)+0x2A8
-    local soraScalePointer=ReadLong(0x55629A)+0x3C
+local soraJumpStrengthPointer=ReadLong(0x1B2512)+0x130
+local animpointer=ReadLong(0x1B2512)+0x2A8
+local soraScalePointer=ReadLong(0x55629A)+0x3C
     if ReadLong(0x24AA2CA) == 0 or ReadShort(0x6877DA) == 0 then
         rngWait = rngWait - 1
     end
@@ -122,116 +122,116 @@ function Cheats()
         rngMasterCost = math.random(0,9) -- Master Form Cost
         rngFinalCost = math.random(0,9) -- Final Form Cost
         rngSummonCost = math.random(0,9) -- Summon Costs (Affects all summons)
-        rngMagicCost = math.random(0,rngMP+25) -- Magic Cost (Affects every magic spell and limit)
+        rngMagicCost = math.random(0,rngMP+20) -- Magic Cost (Affects every magic spell and limit)
         rngQuickRun = math.random(1,125)  -- Quick Run Speed
         rngADodgeHeight = math.random(0,2000)  -- Aerial Dodge Height (Affects all levels)
         rngADodgeSpeed = math.random(1,350) -- Aerial Dodge Speed [Horizontal Speed] (Affects all levels)
-		--rngDriveSpd = math.random(-2,3) -- Drive Gauge Drain Speed [Unstable! May cause crashes!]
-		--rngCameraFOV = math.random(100,300)/100 -- Camera Field of View (DO NOT SET BELOW 1)  [Unstable! May cause crashes!]
-		--rngAudio = math.random(0,20)/10 -- Game Audio Speed/Pitch [Unstable! May cause crashes!]
-		rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
-		rngDraw = math.random(0,20)*125 -- Draw Range
+	rngDriveSpd = math.random(-2,3) -- Experimental! Please comment out if you experience crashes. [Changes the drive/summon drain speed, requires a transition]
+	rngCameraFOV = math.random(100,300)/100 -- Experimental! Please comment out if you experience crashes. [Changes the camera's field of view. Do not go below 1!]
+	rngAudio = math.random(0,20)/10 -- Experimental! Please comment out if you experience crashes. [Changes the speed/pitch of the game's audio]
+	rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
+	rngDraw = math.random(0,20)*125 -- Draw Range
     end
-    WriteFloat(Sys3+0x17CE4, rngBaseSpeed) -- Base Speed: DS = 8
-    WriteFloat(Sys3+0x17D18, rngValor) -- Valor Form: DS = 12
-    WriteFloat(Sys3+0x17D4C, rngWisdom) -- Wisdom Form: DS = 12
-    WriteFloat(Sys3+0x17D80, rngMaster) -- Master Form: DS = 10
-    WriteFloat(Sys3+0x17DB4, rngFinal) -- Final Form: DS = 16
-    WriteFloat(Sys3+0x17E1C, rngLion) -- Lion Sora: DS = 18
-    WriteFloat(Sys3+0x17DE8, rngAnti) -- Anti Form: DS = 16
-    WriteFloat(Sys3+0x17E50, rngMermaid) -- Mermaid Sora: DS = 7
-    WriteFloat(Sys3+0x18190, rngCarpet) -- Carpet Sora: DS = 20
-    WriteFloat(Sys3+0x181F8, rngDice) -- Dice Sora: DS = 8
-    WriteFloat(Sys3+0x1822C, rngCard) -- Card Sora: DS = 8
-    WriteFloat(Sys3+0x18364, rngLimit) -- Limit Form: DS = 8
-    WriteByte(Slot1+0x4, rngHP) -- Max HP
-    WriteByte(Slot1+0x184, rngMP) -- Max MP
-    WriteByte(0x24BC8D2, rngAttack) -- Attack Stat
-    WriteByte(0x24BC8D4, rngMagic) -- Magic Stat
-    WriteByte(0x24BC8D6, rngDefense) -- Defense Stat
-    WriteFloat(0x250D332, rngGlideSpeed) -- Glide 1 Speed (Default: 16)
-    WriteFloat(0x250D376, rngGlideSpeed) -- Glide 2 Speed (Default: 20)
-    WriteFloat(0x250D3BA, rngGlideSpeed) -- Glide 3 Speed (Default: 24)
-    WriteFloat(0x250D3FE, rngGlideSpeed) -- Glide MAX Speed (Default: 32)
-    WriteFloat(0x250D442, rngGlideSpeed) -- Glide AX2 Speed (Default: 64)
-    WriteFloat(0x250D312, rngHighJump) -- Sora Base Jump Height
-    WriteFloat(0x250D356, rngHighJump) -- Sora High Jump 2
-    WriteFloat(0x250D39A, rngHighJump) -- Sora High Jump 3
-    WriteFloat(0x250D3DE, rngHighJump) -- Sora High Jump MAX
-    WriteFloat(0x250D422, rngHighJump) -- Sora High Jump AX2
-    WriteFloat(0x250CEC6, rngAerial) -- Aerial Recovery Movement Speed
-    WriteByte(Sys3+0x03E0,rngValorCost) -- Valor
-    WriteByte(Sys3+0x0410,rngWisdomCost) -- Wisdom
-    WriteByte(Sys3+0x7A30,rngLimitCost) -- Limit
-    WriteByte(Sys3+0x04A0,rngMasterCost) -- Master
-    WriteByte(Sys3+0x04D0,rngFinalCost) -- Final
-    WriteByte(Sys3+0x5180,rngSummonCost) -- Chicken
-    WriteByte(Sys3+0x1070,rngSummonCost) -- Stitch
-    WriteByte(Sys3+0x10A0,rngSummonCost) -- Genie
-    WriteByte(Sys3+0x37A0,rngSummonCost) -- Pan
-    WriteByte(Sys3+0x9E0,rngMagicCost) -- Fire Cost
-    WriteByte(Sys3+0x15E0,rngMagicCost) -- Fira Cost
-    WriteByte(Sys3+0x1610,rngMagicCost) -- Firaga Cost
-    WriteByte(Sys3+0xA40,rngMagicCost) -- Blizzard Cost
-    WriteByte(Sys3+0x1640,rngMagicCost) -- Blizzara Cost
-    WriteByte(Sys3+0x1670,rngMagicCost) -- Blizzaga Cost
-    WriteByte(Sys3+0xA10,rngMagicCost) -- Thunder Cost
-    WriteByte(Sys3+0x16A0,rngMagicCost) -- Thundara Cost
-    WriteByte(Sys3+0x16D0,rngMagicCost) -- Thundaga Cost
-    WriteByte(Sys3+0xA70,rngMagicCost) -- Cure Cost
-    WriteByte(Sys3+0x1700,rngMagicCost) -- Cura Cost
-    WriteByte(Sys3+0x1730,rngMagicCost) -- Curaga Cost
-    WriteByte(Sys3+0x1F40,rngMagicCost) -- Magnet Cost
-    WriteByte(Sys3+0x1F70,rngMagicCost) -- Magnera Cost
-    WriteByte(Sys3+0x1FA0,rngMagicCost) -- Magnega Cost
-    WriteByte(Sys3+0x1FD0,rngMagicCost) -- Reflect Cost
-    WriteByte(Sys3+0x2000,rngMagicCost) -- Reflera Cost
-    WriteByte(Sys3+0x2030,rngMagicCost) -- Reflega Cost
-    WriteByte(Sys3+0xE30,rngMagicCost) -- Twin Howl Cost
-    WriteByte(Sys3+0xFB0,rngMagicCost) -- Bushido Cost
-    WriteByte(Sys3+0x1940,rngMagicCost) -- Red Rocket Cost
-    WriteByte(Sys3+0x3F80,rngMagicCost) -- Speedster Cost
-    WriteByte(Sys3+0x40A0,rngMagicCost) -- Bluff Cost
-    WriteByte(Sys3+0x4430,rngMagicCost) -- Wildcat Cost
-    WriteByte(Sys3+0x49A0,rngMagicCost) -- Dance Call Cost
-    WriteByte(Sys3+0x4B80,rngMagicCost) -- Setup Cost
-    WriteByte(Sys3+0x67D0,rngMagicCost) -- Session Cost
-    WriteByte(Sys3+0x5840,rngMagicCost) -- Trinity Limit Cost
-    WriteByte(Sys3+0x5840+0x1830,rngMagicCost) -- (Solo) Trinity Limit Cost
-    WriteByte(Sys3+0x2E10,rngMagicCost) -- Whirli-Goof Cost
-    WriteByte(Sys3+0x3D40,rngMagicCost) -- Knocksmash Cost
-    WriteByte(Sys3+0x3320,rngMagicCost) -- Comet Cost
-    WriteByte(Sys3+0x3E60,rngMagicCost) -- Duck Flare Cost
-    WriteByte(Sys3+0x7E50,rngMagicCost) -- Strike Raid Cost
-    WriteByte(Sys3+0x7D30,rngMagicCost) -- Sonic Blade Cost
-    WriteByte(Sys3+0x7C10,rngMagicCost) -- Ragnarok Cost
-    WriteByte(Sys3+0x7DC0,rngMagicCost) -- Ars Arcanum Cost
-    WriteFloat(0x250D322, rngQuickRun) -- QR1 Speed
-    WriteFloat(0x250D366, rngQuickRun) -- QR2 Speed
-    WriteFloat(0x250D3AA, rngQuickRun) -- QR3 Speed
-    WriteFloat(0x250D3EE, rngQuickRun) -- QR4 Speed
-    WriteFloat(0x250D432, rngQuickRun) -- QRAX2 Speed
-    WriteFloat(0x250D316, rngADodgeHeight) -- AD1 Height
-    WriteFloat(0x250D31A, rngADodgeSpeed) -- AD1 Speed
-    WriteFloat(0x250D35A, rngADodgeHeight) -- AD2 Height
-    WriteFloat(0x250D35E, rngADodgeSpeed) -- AD2 Speed
-    WriteFloat(0x250D39E, rngADodgeHeight) -- AD3 Height
-    WriteFloat(0x250D3A3, rngADodgeSpeed) -- AD3 Speed
-    WriteFloat(0x250D3E2, rngADodgeHeight) -- AD4 Height
-    WriteFloat(0x250D3E6, rngADodgeSpeed) -- AD4 Speed
-    WriteFloat(0x250D426, rngADodgeHeight) -- ADAX2 Height
-    WriteFloat(0x250D42A, rngADodgeSpeed) -- ADAX2 Speed
-	--WriteFloat(DriveSpd, rngDriveSpd) -- Drive Gauge Speed [Unstable! May cause crashes!]
-	--WriteFloat(SumSpd, rngDriveSpd) -- Summon Gauge Speed [Unstable! May cause crashes!]
-	--WriteFloat(CameraFOV, rngCameraFOV) -- -- Optional setting for the camera field of view. Leave commented if you want to keep this disabled!
-	--WriteFloat(GamAud, rngAudio) -- Game Audio Speed [Unstable! May cause crashes!]
-	WriteFloat(0x250D352, rngDodgeRoll) -- Dodge Roll 1
-	WriteFloat(0x250D396, rngDodgeRoll) -- Dodge Roll 2
-	WriteFloat(0x250D3DA, rngDodgeRoll) -- Dodge Roll 3
-	WriteFloat(0x250D41E, rngDodgeRoll) -- Dodge Roll MAX
-	WriteFloat(0x250D462, rngDodgeRoll) -- Dodge Roll AX2
-	WriteFloat(0x24BC952, rngDraw)
-    WriteFloat(soraJumpStrengthPointer, rngHighJump, true)
+WriteFloat(Sys3+0x17CE4, rngBaseSpeed) -- Base Speed: DS = 8
+WriteFloat(Sys3+0x17D18, rngValor) -- Valor Form: DS = 12
+WriteFloat(Sys3+0x17D4C, rngWisdom) -- Wisdom Form: DS = 12
+WriteFloat(Sys3+0x17D80, rngMaster) -- Master Form: DS = 10
+WriteFloat(Sys3+0x17DB4, rngFinal) -- Final Form: DS = 16
+WriteFloat(Sys3+0x17E1C, rngLion) -- Lion Sora: DS = 18
+WriteFloat(Sys3+0x17DE8, rngAnti) -- Anti Form: DS = 16
+WriteFloat(Sys3+0x17E50, rngMermaid) -- Mermaid Sora: DS = 7
+WriteFloat(Sys3+0x18190, rngCarpet) -- Carpet Sora: DS = 20
+WriteFloat(Sys3+0x181F8, rngDice) -- Dice Sora: DS = 8
+WriteFloat(Sys3+0x1822C, rngCard) -- Card Sora: DS = 8
+WriteFloat(Sys3+0x18364, rngLimit) -- Limit Form: DS = 8
+WriteByte(Slot1+0x4, rngHP) -- Max HP
+WriteByte(Slot1+0x184, rngMP) -- Max MP
+WriteByte(0x24BC8D2, rngAttack) -- Attack Stat
+WriteByte(0x24BC8D4, rngMagic) -- Magic Stat
+WriteByte(0x24BC8D6, rngDefense) -- Defense Stat
+WriteFloat(0x250D332, rngGlideSpeed) -- Glide 1 Speed (Default: 16)
+WriteFloat(0x250D376, rngGlideSpeed) -- Glide 2 Speed (Default: 20)
+WriteFloat(0x250D3BA, rngGlideSpeed) -- Glide 3 Speed (Default: 24)
+WriteFloat(0x250D3FE, rngGlideSpeed) -- Glide MAX Speed (Default: 32)
+WriteFloat(0x250D442, rngGlideSpeed) -- Glide AX2 Speed (Default: 64)
+WriteFloat(0x250D312, rngHighJump) -- Sora Base Jump Height
+WriteFloat(0x250D356, rngHighJump) -- Sora High Jump 2
+WriteFloat(0x250D39A, rngHighJump) -- Sora High Jump 3
+WriteFloat(0x250D3DE, rngHighJump) -- Sora High Jump MAX
+WriteFloat(0x250D422, rngHighJump) -- Sora High Jump AX2
+WriteFloat(0x250CEC6, rngAerial) -- Aerial Recovery Movement Speed
+WriteByte(Sys3+0x03E0,rngValorCost) -- Valor
+WriteByte(Sys3+0x0410,rngWisdomCost) -- Wisdom
+WriteByte(Sys3+0x7A30,rngLimitCost) -- Limit
+WriteByte(Sys3+0x04A0,rngMasterCost) -- Master
+WriteByte(Sys3+0x04D0,rngFinalCost) -- Final
+WriteByte(Sys3+0x5180,rngSummonCost) -- Chicken
+WriteByte(Sys3+0x1070,rngSummonCost) -- Stitch
+WriteByte(Sys3+0x10A0,rngSummonCost) -- Genie
+WriteByte(Sys3+0x37A0,rngSummonCost) -- Pan
+WriteByte(Sys3+0x9E0,rngMagicCost) -- Fire Cost
+WriteByte(Sys3+0x15E0,rngMagicCost) -- Fira Cost
+WriteByte(Sys3+0x1610,rngMagicCost) -- Firaga Cost
+WriteByte(Sys3+0xA40,rngMagicCost) -- Blizzard Cost
+WriteByte(Sys3+0x1640,rngMagicCost) -- Blizzara Cost
+WriteByte(Sys3+0x1670,rngMagicCost) -- Blizzaga Cost
+WriteByte(Sys3+0xA10,rngMagicCost) -- Thunder Cost
+WriteByte(Sys3+0x16A0,rngMagicCost) -- Thundara Cost
+WriteByte(Sys3+0x16D0,rngMagicCost) -- Thundaga Cost
+WriteByte(Sys3+0xA70,rngMagicCost) -- Cure Cost
+WriteByte(Sys3+0x1700,rngMagicCost) -- Cura Cost
+WriteByte(Sys3+0x1730,rngMagicCost) -- Curaga Cost
+WriteByte(Sys3+0x1F40,rngMagicCost) -- Magnet Cost
+WriteByte(Sys3+0x1F70,rngMagicCost) -- Magnera Cost
+WriteByte(Sys3+0x1FA0,rngMagicCost) -- Magnega Cost
+WriteByte(Sys3+0x1FD0,rngMagicCost) -- Reflect Cost
+WriteByte(Sys3+0x2000,rngMagicCost) -- Reflera Cost
+WriteByte(Sys3+0x2030,rngMagicCost) -- Reflega Cost
+WriteByte(Sys3+0xE30,rngMagicCost) -- Twin Howl Cost
+WriteByte(Sys3+0xFB0,rngMagicCost) -- Bushido Cost
+WriteByte(Sys3+0x1940,rngMagicCost) -- Red Rocket Cost
+WriteByte(Sys3+0x3F80,rngMagicCost) -- Speedster Cost
+WriteByte(Sys3+0x40A0,rngMagicCost) -- Bluff Cost
+WriteByte(Sys3+0x4430,rngMagicCost) -- Wildcat Cost
+WriteByte(Sys3+0x49A0,rngMagicCost) -- Dance Call Cost
+WriteByte(Sys3+0x4B80,rngMagicCost) -- Setup Cost
+WriteByte(Sys3+0x67D0,rngMagicCost) -- Session Cost
+WriteByte(Sys3+0x5840,rngMagicCost) -- Trinity Limit Cost
+WriteByte(Sys3+0x5840+0x1830,rngMagicCost) -- (Solo) Trinity Limit Cost
+WriteByte(Sys3+0x2E10,rngMagicCost) -- Whirli-Goof Cost
+WriteByte(Sys3+0x3D40,rngMagicCost) -- Knocksmash Cost
+WriteByte(Sys3+0x3320,rngMagicCost) -- Comet Cost
+WriteByte(Sys3+0x3E60,rngMagicCost) -- Duck Flare Cost
+WriteByte(Sys3+0x7E50,rngMagicCost) -- Strike Raid Cost
+WriteByte(Sys3+0x7D30,rngMagicCost) -- Sonic Blade Cost
+WriteByte(Sys3+0x7C10,rngMagicCost) -- Ragnarok Cost
+WriteByte(Sys3+0x7DC0,rngMagicCost) -- Ars Arcanum Cost
+WriteFloat(0x250D322, rngQuickRun) -- QR1 Speed
+WriteFloat(0x250D366, rngQuickRun) -- QR2 Speed
+WriteFloat(0x250D3AA, rngQuickRun) -- QR3 Speed
+WriteFloat(0x250D3EE, rngQuickRun) -- QR4 Speed
+WriteFloat(0x250D432, rngQuickRun) -- QRAX2 Speed
+WriteFloat(0x250D316, rngADodgeHeight) -- AD1 Height
+WriteFloat(0x250D31A, rngADodgeSpeed) -- AD1 Speed
+WriteFloat(0x250D35A, rngADodgeHeight) -- AD2 Height
+WriteFloat(0x250D35E, rngADodgeSpeed) -- AD2 Speed
+WriteFloat(0x250D39E, rngADodgeHeight) -- AD3 Height
+WriteFloat(0x250D3A3, rngADodgeSpeed) -- AD3 Speed
+WriteFloat(0x250D3E2, rngADodgeHeight) -- AD4 Height
+WriteFloat(0x250D3E6, rngADodgeSpeed) -- AD4 Speed
+WriteFloat(0x250D426, rngADodgeHeight) -- ADAX2 Height
+WriteFloat(0x250D42A, rngADodgeSpeed) -- ADAX2 Speed
+WriteFloat(0xFFFFFFFFFFE9AA08, rngDriveSpd) -- Experimental! Please comment out if you experience crashes.
+WriteFloat(0xFFFFFFFFFFE9AA3A, rngDriveSpd) -- Experimental! Please comment out if you experience crashes.
+WriteFloat(0xFFFFFFFFFFF0FE0F, rngCameraFOV) -- Experimental! Please comment out if you experience crashes.
+WriteFloat(0xFFFFFFFFFFB4C3DA, rngAudio) -- Experimental! Please comment out if you experience crashes.
+WriteFloat(0x250D352, rngDodgeRoll) -- Dodge Roll 1
+WriteFloat(0x250D396, rngDodgeRoll) -- Dodge Roll 2
+WriteFloat(0x250D3DA, rngDodgeRoll) -- Dodge Roll 3
+WriteFloat(0x250D41E, rngDodgeRoll) -- Dodge Roll MAX
+WriteFloat(0x250D462, rngDodgeRoll) -- Dodge Roll AX2
+WriteFloat(0x24BC952, rngDraw)
+WriteFloat(soraJumpStrengthPointer, rngHighJump, true)
     if ReadShort(Now+0) == 0x1C12 and ReadShort(Now+8) == 0x44 then
         WriteFloat(soraScalePointer, 1, true)
     elseif ReadShort(Now+0) == 0x2202 and ReadShort(Now+8) == 0x9D then
