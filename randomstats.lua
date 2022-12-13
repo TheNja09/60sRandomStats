@@ -126,11 +126,15 @@ local soraScalePointer=ReadLong(0x55629A)+0x3C
         rngQuickRun = math.random(1,125)  -- Quick Run Speed
         rngADodgeHeight = math.random(0,2000)  -- Aerial Dodge Height (Affects all levels)
         rngADodgeSpeed = math.random(1,350) -- Aerial Dodge Speed [Horizontal Speed] (Affects all levels)
-		rngDriveSpd = math.random(-2,3) -- Experimental! Please comment out if you experience crashes. [Changes the drive/summon drain speed, requires a transition]
-		--rngCameraFOV = math.random(100,300)/100 -- Experimental! Please comment out if you experience crashes. [Changes the camera's field of view. Do not go below 1!]
-		rngAudio = math.random(10,300)/100 -- Experimental! Please comment out if you experience crashes. [Changes the speed/pitch of the game's audio]
-		rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
-		rngDraw = math.random(0,20)*125 -- Draw Range
+	rngDriveSpd = math.random(-2,3) -- Experimental! Please comment out if you experience crashes. [Changes the drive/summon drain speed, requires a transition]
+	--rngCameraFOV = math.random(100,300)/100 -- Experimental! Please comment out if you experience crashes. [Changes the camera's field of view. Do not go below 1!]
+	rngAudio = math.random(10,300)/100 -- Experimental! Please comment out if you experience crashes. [Changes the speed/pitch of the game's audio]
+	rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
+	rngDraw = math.random(0,20)*125 -- Draw Range
+	WriteFloat(0xFFFFFFFFFFE9AA08, rngDriveSpd) -- Experimental! Please comment out if you experience crashes.
+	WriteFloat(0xFFFFFFFFFFE9AA3A, rngDriveSpd) -- Experimental! Please comment out if you experience crashes.
+	--WriteFloat(0xFFFFFFFFFFF0FE0F, rngCameraFOV) -- Experimental! Please comment out if you experience crashes.
+	WriteFloat(0xFFFFFFFFFFB4C3DA, rngAudio) -- Experimental! Please comment out if you experience crashes.
     end
 WriteFloat(Sys3+0x17CE4, rngBaseSpeed) -- Base Speed: DS = 8
 WriteFloat(Sys3+0x17D18, rngValor) -- Valor Form: DS = 12
@@ -221,10 +225,6 @@ WriteFloat(0x250D3E2, rngADodgeHeight) -- AD4 Height
 WriteFloat(0x250D3E6, rngADodgeSpeed) -- AD4 Speed
 WriteFloat(0x250D426, rngADodgeHeight) -- ADAX2 Height
 WriteFloat(0x250D42A, rngADodgeSpeed) -- ADAX2 Speed
-WriteFloat(0xFFFFFFFFFFE9AA08, rngDriveSpd) -- Experimental! Please comment out if you experience crashes.
-WriteFloat(0xFFFFFFFFFFE9AA3A, rngDriveSpd) -- Experimental! Please comment out if you experience crashes.
---WriteFloat(0xFFFFFFFFFFF0FE0F, rngCameraFOV) -- Experimental! Please comment out if you experience crashes.
-WriteFloat(0xFFFFFFFFFFB4C3DA, rngAudio) -- Experimental! Please comment out if you experience crashes.
 WriteFloat(0x250D352, rngDodgeRoll) -- Dodge Roll 1
 WriteFloat(0x250D396, rngDodgeRoll) -- Dodge Roll 2
 WriteFloat(0x250D3DA, rngDodgeRoll) -- Dodge Roll 3
