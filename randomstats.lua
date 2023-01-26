@@ -78,6 +78,7 @@ function Events(M,B,E) --Check for Map, Btl, and Evt
 end
 
 function Cheats()
+local SoraCurrentSpeed = 0x00716A60-0x56454E
 local soraJumpStrengthPointer=ReadLong(0x1B2512)+0x130
 local animpointer=ReadLong(0x1B2512)+0x2A8
 local soraScalePointer=ReadLong(0x55629A)+0x3C
@@ -136,7 +137,7 @@ local soraScalePointer=ReadLong(0x55629A)+0x3C
 	--WriteFloat(0xFFFFFFFFFFF0FE0F, rngCameraFOV) -- Experimental! Please comment out if you experience crashes.
 	WriteFloat(0xFFFFFFFFFFB4C3DA, rngAudio) -- Experimental! Please comment out if you experience crashes.
     end
-WriteFloat(Sys3+0x17CE4, rngBaseSpeed) -- Base Speed: DS = 8
+WriteFloat(ReadLong(SoraCurrentSpeed)+0x128, rngBaseSpeed, true) -- Base Speed: DS = 8
 WriteFloat(Sys3+0x17D18, rngValor) -- Valor Form: DS = 12
 WriteFloat(Sys3+0x17D4C, rngWisdom) -- Wisdom Form: DS = 12
 WriteFloat(Sys3+0x17D80, rngMaster) -- Master Form: DS = 10
