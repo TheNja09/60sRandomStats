@@ -2,17 +2,7 @@ rngWait = 3600 --This is the FIRST time before the random stat generation, count
 --You should also edit the value at the very bottom of this page if you wish to have different RNG timings!
 --You can ignore these values below
 rngBaseSpeed = 8
-rngValor = 12
-rngWisdom = 12
-rngMaster = 10
-rngFinal = 16
-rngAnti = 16
-rngLion = 18
-rngMermaid = 7
-rngCarpet = 20
-rngDice = 8
-rngCard = 8
-rngLimit = 8
+rngBaseSpeed2 = 2
 rngAttack = 10
 rngMagic = 10
 rngDefense = 10
@@ -96,17 +86,7 @@ local soraScalePointer=ReadLong(0x55629A)+0x3C
     -- The first number is the minimum value, and the second number is the maximum value.
     if rngWait == 0 then
         rngBaseSpeed = math.random(1,40) -- Base running speed of Sora/Roxas. The minimum is 1, and the maxmimum is 40.
-        rngValor = math.random(1,60) -- Base running speed of Valor. Min is 1, Max is 60, and so on.
-        rngWisdom = math.random(1,60) -- Base Wisdom Speed
-        rngMaster = math.random(1,50) -- Base Master Speed
-        rngFinal = math.random(1,80) -- Base Final Speed
-        rngAnti = math.random(1,80) -- Base Anti Speed
-        rngLion = math.random(1,90) -- Base Lion Speed (Does not include dash)
-        rngMermaid = math.random(1,35) -- Base Mermaid Speed
-        rngCarpet = math.random(1,100) -- Base Carpet Speed
-        rngDice = math.random(1,40) -- Base Dice Speed
-        rngCard = math.random(1,40) -- Base Card Speed (Does not seem to work?)
-        rngLimit = math.random(1,40) -- Base Limit Form Speed
+	rngBaseSpeed = math.random(1,40) -- Base walking speed of Sora/Roxas. The minimum is 1, and the maxmimum is 40.
         rngAttack = math.random(1,80) -- Attack Stat (Note: for ATK, MAG, & DEF, leveling up and stat boosts will not work with this mod.)
         rngMagic = math.random(1,80) -- Magic Stat
         rngDefense = math.random(1,80) -- Defense Stat
@@ -137,18 +117,8 @@ local soraScalePointer=ReadLong(0x55629A)+0x3C
 	--WriteFloat(0xFFFFFFFFFFF0FE0F, rngCameraFOV) -- Experimental! Please comment out if you experience crashes.
 	WriteFloat(0xFFFFFFFFFFB4C3DA, rngAudio) -- Experimental! Please comment out if you experience crashes.
     end
-WriteFloat(ReadLong(SoraCurrentSpeed)+0x12C, rngBaseSpeed, true) -- Base Speed: DS = 8
-WriteFloat(Sys3+0x17D18, rngValor) -- Valor Form: DS = 12
-WriteFloat(Sys3+0x17D4C, rngWisdom) -- Wisdom Form: DS = 12
-WriteFloat(Sys3+0x17D80, rngMaster) -- Master Form: DS = 10
-WriteFloat(Sys3+0x17DB4, rngFinal) -- Final Form: DS = 16
-WriteFloat(Sys3+0x17E1C, rngLion) -- Lion Sora: DS = 18
-WriteFloat(Sys3+0x17DE8, rngAnti) -- Anti Form: DS = 16
-WriteFloat(Sys3+0x17E50, rngMermaid) -- Mermaid Sora: DS = 7
-WriteFloat(Sys3+0x18190, rngCarpet) -- Carpet Sora: DS = 20
-WriteFloat(Sys3+0x181F8, rngDice) -- Dice Sora: DS = 8
-WriteFloat(Sys3+0x1822C, rngCard) -- Card Sora: DS = 8
-WriteFloat(Sys3+0x18364, rngLimit) -- Limit Form: DS = 8
+WriteFloat(ReadLong(SoraCurrentSpeed)+0x12C, rngBaseSpeed, true) -- Base Running Speed
+WriteFloat(ReadLong(SoraCurrentSpeed)+0x128, rngBaseSpeed2, true) -- Base Walking Speed
 WriteByte(Slot1+0x4, rngHP) -- Max HP
 WriteByte(Slot1+0x184, rngMP) -- Max MP
 WriteByte(0x24BC8D2, rngAttack) -- Attack Stat
