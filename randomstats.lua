@@ -68,6 +68,7 @@ function Events(M,B,E) --Check for Map, Btl, and Evt
 end
 
 function Cheats()
+local DriveDepleterPointer = 0x2A20238 - 0x56454E
 local SoraCurrentSpeed = 0x00716A60-0x56454E
 local soraJumpStrengthPointer=ReadLong(0x1B2512)+0x130
 local animpointer=ReadLong(0x1B2512)+0x2A8
@@ -112,7 +113,7 @@ local soraScalePointer=ReadLong(0x55629A)+0x3C
 	rngAudio = math.random(10,300)/100 -- Experimental! Please comment out if you experience crashes. [Changes the speed/pitch of the game's audio]
 	rngDodgeRoll = math.random(0,300) -- Dodge Roll iFrames
 	rngDraw = math.random(0,20)*125 -- Draw Range
-	WriteFloat(0xFFFFFFFFFFE9AA08, rngDriveSpd) -- Experimental! Please comment out if you experience crashes.
+	WriteFloat(ReadLong(DriveDepleterPointer) + 0xE6C, rngDriveSpd, true) -- Experimental! Please comment out if you experience crashes.
 	WriteFloat(0xFFFFFFFFFFE9AA3A, rngDriveSpd) -- Experimental! Please comment out if you experience crashes.
 	--WriteFloat(0xFFFFFFFFFFF0FE0F, rngCameraFOV) -- Experimental! Please comment out if you experience crashes.
 	WriteFloat(0xFFFFFFFFFFB4C3DA, rngAudio) -- Experimental! Please comment out if you experience crashes.
